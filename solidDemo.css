@@ -1,3 +1,37 @@
+html {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    height: 100%;
+}
+
+main {
+    height: calc(100% - 100px);
+}
+
+label {
+    color: white;
+}
+
+img {
+    width: 450px;
+    height: 450px;
+}
+
+.profilForm {
+    background-color: lightgrey;
+    padding: 100px !important;
+}
+
+#labelStatus {
+    text-align: center;
+    font-size: 1.5em;
+}
+
 h2,
 h3 {
     margin: 1rem 1.2rem 1rem 1.4rem;
@@ -43,4 +77,10 @@ dl {
 
 dd {
     font-weight: bold;
+}
+
+@media screen and (max-width: 1200px) {
+   .myIMG {
+       display: none;
+   }
 }

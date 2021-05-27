@@ -1,76 +1,155 @@
 
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title>Getting Started: Inrupt JavaScript Client Libraries</title>
-  <script defer src="./index.js"></script>
-  <link rel="stylesheet" href="solidDemo.css" />
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Getting Started: Inrupt JavaScript Client Libraries</title>
+    <script defer src="./index.js"></script>
+    <link rel="stylesheet" href="solidDemo.css" />
 
-<body>
-<header>
-  <h2>Getting Started</h2>
-  <h3>with Inrupt JavaScript Client Libraries</h3>
-</header>
-<section id="login" class="panel">
-  <div class="row">
-    <label id="labelLogin" for="btnLogin"
-    >1. Click the button to log into
-      <span id="solid_identity_provider"
-      >...provided by the JavaScript code...</span
-      >:
-    </label>
-    <button name="btnLogin" id="btnLogin">Login</button>
-    <p id="labelStatus" class="labelStatus"></p>
-  </div>
-</section>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
-<div id="read" class="panel">
-  <div class="row">
-    <form id="writeForm">
-      <label id="writelabel" for="name">2. Write your name: </label>
-      <input
-              type="text"
-              id="input_name"
-              name="name"
-              size="50"
-              placeholder="Your name here"
-      />
-      <button type="submit">
-        Write to Profile
-      </button>
-    </form>
-  </div>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </head>
 
-  <dl class="display">
-    <dt>Writing status:&nbsp</dt>
-    <dd id="labelWriteStatus" class="labelStatus">...not written yet...</dd>
-  </dl>
-</div>
+  <body>
 
-<div id="read" class="panel">
-  <div class="row">
-    <form id="readForm">
-      <label id="readlabel" for="webID"
-      >3. Read back name (anyone's!) from their WebID:
-      </label>
-      <input
-              type="url"
-              id="webID"
-              name="webID"
-              size="50"
-              placeholder="...not logged in yet - but enter any WebID to read from its profile..."
-      />
-      <button type="submit" name="btnRead" id="btnRead">
-        Read Profile
-      </button>
-    </form>
-  </div>
-  <dl class="display">
-    <dt>Formatted Name (FN) read from Pod:&nbsp</dt>
-    <dd id="labelFN">...not read yet...</dd>
-  </dl>
-</div>
-</body>
+    <nav>
+      <div class="nav-wrapper pink darken-4">
+        <a href="#" class="brand-logo">Rundom</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li><a id="btnLogin" href="#">Login</a></li>
+          <li><a id="btnRead" href="#">Get Profile</a></li>
+        </ul>
+      </div>
+    </nav>
+    <h1 style="text-align: center">Welcome to RunDom !</h1>
+    <main class="row valign-wrapper">
+      <div class="col s10 offset-s1 profilForm">
+        <span id="solid_identity_provider">
+          ...provided by the JavaScript code...
+        </span>
+        <p id="labelStatus" class="labelStatus"><a id="webID"></a></p>
+        <div class="row">
+          <div class="col s12 m12 l6 myIMG">
+            <img src="https://us.123rf.com/450wm/mialima/mialima1603/mialima160300025/55096766-male-user-icon-isolated-on-a-white-background-account-avatar-for-web-user-profile-picture-unknown-ma.jpg">
+          </div>
+          <div class="col s12 m12 l6">
+            <div class="input-field col s12">
+              <input placeholder="Name" id="first_name" type="text" class="validate">
+              <label for="first_name">Name</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input disabled placeholder="Role" id="role" type="text" class="validate">
+              <label for="role">Role</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input disabled placeholder="Organisation" id="orga" type="text" class="validate">
+              <label for="orga">Organisation</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input disabled placeholder="Phone" id="phone" type="text" class="validate">
+              <label for="phone">Phone</label>
+            </div>
+
+            <div class="input-field col s12">
+              <input disabled placeholder="Mail" id="mail" type="text" class="validate">
+              <label for="mail">Mail</label>
+            </div>
+
+            <div class="input-field col s12">
+              <textarea disabled placeholder="Present Yourself" id="presentation" class="materialize-textarea"></textarea>
+              <label for="presentation">Present yourself</label>
+            </div>
+          </div>
+          <div class="col s12 center-align">
+            <a disabled class="waves-effect waves-light btn pink darken-4" href="https://fir-rtc-937e1.web.app/">Let's Rundom !</a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <header>
+      <h2>Getting Started</h2>
+      <h3>with Inrupt JavaScript Client Libraries</h3>
+    </header>
+    <section id="login" class="panel">
+      <div class="row">
+        <label id="labelLogin" for="btnLogin"
+        >1. Click the button to log into
+          <span id="solid_identity_provider"
+          >...provided by the JavaScript code...</span
+          >:
+        </label>
+        <button name="btnLogin" id="btnLogins">Login</button>
+        <p id="labelStatuss" class="labelStatus"></p>
+      </div>
+    </section>
+
+    <div id="read" class="panel">
+      <div class="row">
+        <form id="writeForm">
+          <label id="writelabel" for="name">2. Write your name: </label>
+          <input
+                  type="text"
+                  id="input_name"
+                  name="name"
+                  size="50"
+                  placeholder="Your name here"
+          />
+          <button type="submit">
+            Write to Profile
+          </button>
+        </form>
+      </div>
+
+      <dl class="display">
+        <dt>Writing status:&nbsp</dt>
+        <dd id="labelWriteStatus" class="labelStatus">...not written yet...</dd>
+      </dl>
+    </div>
+
+    <div id="read" class="panel">
+      <div class="row">
+        <form id="readForm">
+          <label id="readlabel" for="webID"
+          >3. Read back name (anyone's!) from their WebID:
+          </label>
+          <input
+                  type="url"
+                  id="webID"
+                  name="webID"
+                  size="50"
+                  placeholder="...not logged in yet - but enter any WebID to read from its profile..."
+          />
+          <button type="submit" name="btnRead" id="btnReads">
+            Read Profile
+          </button>
+        </form>
+      </div>
+      <dl class="display">
+        <dt>Formatted Name (FN) read from Pod:&nbsp</dt>
+        <dd id="labelFN">...not read yet...</dd>
+      </dl>
+    </div>
+-->
+  </body>
 </html>
