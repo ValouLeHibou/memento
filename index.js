@@ -36,8 +36,6 @@ async function login() {
     }
 }
 
-// 1b. Login Redirect. Call session.handleIncomingRedirect() function.
-// When redirected after login, finish the process by retrieving session information.
 async function handleRedirectAfterLogin() {
     await session.handleIncomingRedirect(window.location.href);
     if (session.info.isLoggedIn) {
@@ -50,12 +48,7 @@ async function handleRedirectAfterLogin() {
     }
 }
 
-// The example has the login redirect back to the index.html.
-// This calls the function to process login information.
-// If the function is called when not part of the login redirect, the function is a no-op.
-handleRedirectAfterLogin();
 
-// 2. Write to profile
 async function writeProfile() {
     const name = document.getElementById("input_name").value;
 
@@ -156,18 +149,24 @@ async function readProfile() {
     const role = getStringNoLocale(profile, "http://www.w3.org/2006/vcard/ns#role");
     const orga = getStringNoLocale(profile, "http://www.w3.org/2006/vcard/ns#organization-name");
     const note = getStringNoLocale(profile, "http://www.w3.org/2006/vcard/ns#note");
-    console.log(formattedName, role, orga, note);
 
-    console.log(profile._entities[11]);
+    const mailtoProfil = getThing(myDataset, profile._entities[12]);
+    const mailto = mailtoProfil._entities[3]
+    const mail = mailto.replace('mailto:', '')
 
+    const hasPhoneProfile = getThing(myDataset, profile._entities[16]);
+    const hasPhone = hasPhoneProfile._entities[3]
+    const phone = hasPhone.replace('tel:', '')
 
     //const hasPhoto = getStringNoLocale(profile, VCARD.hasPhoto);
 
-
     // Update the page with the retrieved values.
+    document.getElementById("avatar").src= profile._entities[14];
     document.getElementById("first_name").value = formattedName;
     document.getElementById("role").value = role;
     document.getElementById("orga").value = orga;
+    document.getElementById("phone").value = phone;
+    document.getElementById("mail").value = mail;
     document.getElementById("presentation").value = note;
 }
 
@@ -188,93 +187,3 @@ writeForm.addEventListener("submit", (event) => {
 btnRead.onclick = function () {
     readProfile();
 };
-
-/*
-
-Object { 1: "https://vguilbaud.solidweb.org/profile/card#me", 2: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", 3: "http://schema.org/Person", 4: "http://xmlns.com/foaf/0.1/Person", 5: "http://www.w3.org/2006/vcard/ns#bday", 6: "\"1995-11-30\"^^http://www.w3.org/2001/XMLSchema#date", 7: "http://www.w3.org/2006/vcard/ns#fn", 8: "\"Valentin\"", 9: "http://www.w3.org/2006/vcard/ns#hasAddress", 10: "https://vguilbaud.solidweb.org/profile/card#id1622064737488", … }
-​
-1: "https://vguilbaud.solidweb.org/profile/card#me"
-​
-2: "http://www.w3.org/1999/02/22-rdf-syntax-ns#type"
-​
-3: "http://schema.org/Person"
-​
-4: "http://xmlns.com/foaf/0.1/Person"
-​
-5: "http://www.w3.org/2006/vcard/ns#bday"
-​
-6: "\"1995-11-30\"^^http://www.w3.org/2001/XMLSchema#date"
-​
-7: "http://www.w3.org/2006/vcard/ns#fn"
-​
-8: "\"Valentin\""
-​
-9: "http://www.w3.org/2006/vcard/ns#hasAddress"
-​
-10: "https://vguilbaud.solidweb.org/profile/card#id1622064737488"
-​
-11: "http://www.w3.org/2006/vcard/ns#hasEmail"
-​
-12: "https://vguilbaud.solidweb.org/profile/card#id1622064753854"
-​
-13: "https://vguilbaud.solidweb.org/profile/card#id1622065197227"
-​
-14: "http://www.w3.org/2006/vcard/ns#hasPhoto"
-​
-15: "https://vguilbaud.solidweb.org/profile/valcolor2.png"
-​
-16: "http://www.w3.org/2006/vcard/ns#hasTelephone"
-​
-17: "https://vguilbaud.solidweb.org/profile/card#id1622064763395"
-​
-18: "http://www.w3.org/2006/vcard/ns#note"
-​
-19: "\"Yolo\""
-​
-20: "http://www.w3.org/2006/vcard/ns#organization-name"
-​
-21: "\"ECV\""
-​
-22: "http://www.w3.org/2006/vcard/ns#role"
-​
-23: "\"Admin\""
-​
-24: "http://www.w3.org/ns/auth/acl#trustedApp"
-​
-25: "_:n3-0"
-​
-26: "_:n3-1"
-​
-27: "http://www.w3.org/ns/ldp#inbox"
-​
-28: "https://vguilbaud.solidweb.org/inbox/"
-​
-29: "http://www.w3.org/ns/pim/space#preferencesFile"
-​
-30: "https://vguilbaud.solidweb.org/settings/prefs.ttl"
-​
-31: "http://www.w3.org/ns/pim/space#storage"
-​
-32: "https://vguilbaud.solidweb.org/"
-​
-33: "http://www.w3.org/ns/solid/terms#account"
-​
-34: "http://www.w3.org/ns/solid/terms#privateTypeIndex"
-​
-35: "https://vguilbaud.solidweb.org/settings/privateTypeIndex.ttl"
-​
-36: "http://www.w3.org/ns/solid/terms#profileBackgroundColor"
-​
-37: "\"#5800fd\"^^http://www.w3.org/2001/XMLSchema#color"
-​
-38: "http://www.w3.org/ns/solid/terms#profileHighlightColor"
-​
-39: "\"#c62dff\"^^http://www.w3.org/2001/XMLSchema#color"
-​
-40: "http://www.w3.org/ns/solid/terms#publicTypeIndex"
-​
-41: "https://vguilbaud.solidweb.org/settings/publicTypeIndex.ttl"
-​
-42: "http://xmlns.com/foaf/0.1/name"
-
-*/
