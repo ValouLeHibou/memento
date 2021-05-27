@@ -48,6 +48,8 @@ async function handleRedirectAfterLogin() {
     }
 }
 
+handleRedirectAfterLogin();
+
 
 async function writeProfile() {
     const name = document.getElementById("input_name").value;
