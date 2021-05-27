@@ -47,6 +47,7 @@ Next I have tried to code a simple connection interface with the basic solid cod
 The tutorial was very simple and all works perfectly.
 The next step was to create a profil interface were people can get the pod's datas.
 
+Solid use `http://www.w3.org/2006/vcard/ns` syntace to determinate the data location. You need to understand the file organisation before coding.
 At the beginning the Vcard system seems simple but it has some specific issues ans spelling that are very difficults to understand :
 
 ```
@@ -58,6 +59,23 @@ const note = getStringNoLocale(profile, VCARD.note);
 
 Finaly I was able to display a fullpage profil :
 
+<img src='/readmeRessources/profil.png' alt="profil">
+
+## How it works
+
+First you need to Click on the `Login` button, it call a `login` function that use an `SOLID_IDENTITY_PROVIDER` (here it is `https://solidweb.org`) and redirect the user on a solid login page.
+
+After login, you will see your pod webID on the screen, it is like your session passport.
+
+Click on the `get profil` button to display your pod informations like name, mail or avatar.
+
+The code will use your webID to get a `dataSet` that contain you `profil` and finaly all of your information.
+
+Like explain before, I'm using the `VCARD` system to get the datas :
+
+```
+WebID => dateSet => Profil => VCARD request => Username
+```
 
 ### Getting Started
 
@@ -95,22 +113,3 @@ Run the basic code :
 ```
 $ npx parcel index.html
 ```
-Solid problems :
-
-The hardest thing was the lack of documentation.
-
-``
-ID Projet Firebase : fir-rtc-937e1
-``
-
-```
-# Deploy on Firebase
-$ firebase deploy
-
-# Run local firebase
-$ firebase serve --only hosting
-```
-
-WebRTC problems :
-
-- Evolution of the technologie = Depreciate code
