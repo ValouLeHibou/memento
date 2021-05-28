@@ -152,18 +152,20 @@ async function readProfile() {
     const orga = getStringNoLocale(profile, "http://www.w3.org/2006/vcard/ns#organization-name");
     const note = getStringNoLocale(profile, "http://www.w3.org/2006/vcard/ns#note");
 
-    const mailtoProfil = getThing(myDataset, profile._entities[12]);
-    const mailto = mailtoProfil._entities[3]
+    console.log(profile);
+
+    const mailtoProfil = getThing(myDataset, profile.predicates["http://www.w3.org/2006/vcard/ns#hasEmail"].namedNodes[0]);
+    const mailto = mailtoProfil.predicates["http://www.w3.org/2006/vcard/ns#value"].namedNodes[0];
     const mail = mailto.replace('mailto:', '')
 
-    const hasPhoneProfile = getThing(myDataset, profile._entities[16]);
-    const hasPhone = hasPhoneProfile._entities[3]
-    const phone = hasPhone.replace('tel:', '')
+    const hasPhoneProfile = getThing(myDataset, profile.predicates["http://www.w3.org/2006/vcard/ns#hasTelephone"].namedNodes[0]);
+    const hasPhone = hasPhoneProfile.predicates["http://www.w3.org/2006/vcard/ns#value"].namedNodes[0];
+    const phone = hasPhone.replace('tel:', '');
 
-    //const hasPhoto = getStringNoLocale(profile, VCARD.hasPhoto);
+    const hasPhoto = profile.predicates["http://www.w3.org/2006/vcard/ns#hasPhoto"].namedNodes[0];
 
     // Update the page with the retrieved values.
-    document.getElementById("avatar").src= profile._entities[14];
+    document.getElementById("avatar").src= hasPhoto;
     document.getElementById("first_name").value = formattedName;
     document.getElementById("role").value = role;
     document.getElementById("orga").value = orga;
